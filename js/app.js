@@ -14,6 +14,9 @@ navigator.getUserMedia(
       var analyser = audioContext.createAnalyser();
       var timeDomain = new Float32Array(analyser.frequencyBinCount);
       var frequency = new Uint8Array(analyser.frequencyBinCount);
+      //var delay = audioContext.createDelay();
+      //var delay = new delayProcess(audioContext);
+
       audioContext.createMediaStreamSource(stream).connect(analyser);
 
       (function animation(){
@@ -22,8 +25,8 @@ navigator.getUserMedia(
 
         context.clearRect(0, 0, canvas.width, canvas.height);
 
+        // Frequency
         if(document.chbox.elements[0].checked){
-          // Frequency
           context.strokeStyle = 'blue';
           context.beginPath();
           context.moveTo(0, canvas.height - frequency[0]*canvas.height/255);
@@ -36,7 +39,7 @@ navigator.getUserMedia(
           context.stroke();
         }
 
-        // Timedomain
+        // Time
         if(document.chbox.elements[1].checked){
           context.strokeStyle = 'red';
           context.beginPath();
