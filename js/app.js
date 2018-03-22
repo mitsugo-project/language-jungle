@@ -3,6 +3,9 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 var canvas = document.querySelector('canvas');
 var context = canvas.getContext('2d');
 
+let dataset = document.getElementById('dataset');
+dataset.value = "";
+
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
@@ -33,6 +36,7 @@ navigator.getUserMedia(
                 canvas.height - Math.max(0, frequency[i]*canvas.height/255)
                 );
           }
+          dataset.value += frequency + "\n";
           context.stroke();
         }
 
